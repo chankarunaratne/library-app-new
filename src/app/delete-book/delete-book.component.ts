@@ -13,6 +13,7 @@ import { BookService } from '../services/book.service';
 export class DeleteBookComponent {
   bookId: number | null = null;
   message: string = '';
+  showMessage: boolean = false;
 
   constructor(private bookService: BookService) {}
 
@@ -24,7 +25,11 @@ export class DeleteBookComponent {
       } else {
         this.message = "That book doesn't exist";
       }
+      this.showMessage = true;
       this.bookId = null;
+    } else {
+      this.message = 'Please enter a valid book ID';
+      this.showMessage = true;
     }
   }
 }

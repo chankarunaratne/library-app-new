@@ -5,6 +5,7 @@
     <button (click)="deleteBook()">Delete Book</button>
   </div>
   <p
+    *ngIf="showMessage"
     class="message"
     [ngClass]="{
       success: message === 'Book deleted successfully',
