@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BookService } from '../services/book.service';
 
-interface Book {
+export interface Book {
   id: number;
   name: string;
   author: string;
@@ -15,15 +16,14 @@ interface Book {
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css',
 })
-export class BookListComponent {
-  books: Book[] = [
-    {
-      id: 1,
-      name: 'To Kill a Mockingbird',
-      author: 'Harper Lee',
-      edition: '1st',
-    },
-    { id: 2, name: '1984', author: 'George Orwell', edition: '1st' },
-    // Add more books as needed
-  ];
+export class BookListComponent implements OnInit {
+  books: Book[] = [];
+
+  constructor(private bookService: BookService) {}
+
+  ngOnInit() {
+    this.bookService.books$.subscribe((books) => {
+      this.books = books;
+    });
+  }
 }

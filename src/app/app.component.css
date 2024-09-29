@@ -1,0 +1,11 @@
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+app-book-list,
+app-add-book {
+  display: block;
+  margin-bottom: 20px;
+}
