@@ -4,8 +4,13 @@
   padding: 20px;
 }
 
+app-search-book,
 app-book-list,
 app-add-book {
   display: block;
   margin-bottom: 20px;
+}
+
+app-add-book {
+  margin-bottom: 0;
 }

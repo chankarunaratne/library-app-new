@@ -1,0 +1,21 @@
+<div class="search-container">
+  <h2>Search for a Book</h2>
+  <div class="search-input">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Enter book name"
+    />
+    <button (click)="searchBook()">Search</button>
+  </div>
+
+  <div class="search-result" *ngIf="searchPerformed">
+    <div *ngIf="foundBook">
+      <h3>Found book:</h3>
+      <p>Name: {{ foundBook.name }}</p>
+      <p>Author: {{ foundBook.author }}</p>
+      <p>Edition: {{ foundBook.edition }}</p>
+    </div>
+    <p *ngIf="!foundBook" class="error-message">We couldn't find that book</p>
+  </div>
+</div>
