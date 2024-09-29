@@ -19,11 +19,18 @@ export class SearchBookComponent {
   constructor(private bookService: BookService) {}
 
   searchBook() {
-    this.searchPerformed = true;
-    const books = this.bookService.getBooks();
-    this.foundBook =
-      books.find((book) =>
-        book.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      ) || null;
+    // Only perform search if searchQuery is not empty
+    if (this.searchQuery.trim()) {
+      this.searchPerformed = true;
+      const books = this.bookService.getBooks();
+      this.foundBook =
+        books.find((book) =>
+          book.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        ) || null;
+    } else {
+      // Reset search state if query is empty
+      this.searchPerformed = false;
+      this.foundBook = null;
+    }
   }
 }
