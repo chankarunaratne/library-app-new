@@ -1,0 +1,16 @@
+<div class="delete-book-container">
+  <h2>Delete a Book</h2>
+  <div class="delete-input">
+    <input type="number" [(ngModel)]="bookId" placeholder="Enter book ID" />
+    <button (click)="deleteBook()">Delete Book</button>
+  </div>
+  <p
+    class="message"
+    [ngClass]="{
+      success: message === 'Book deleted successfully',
+      error: message !== 'Book deleted successfully'
+    }"
+  >
+    {{ message }}
+  </p>
+</div>

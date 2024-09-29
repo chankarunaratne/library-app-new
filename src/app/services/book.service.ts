@@ -26,4 +26,17 @@ export class BookService {
   getBooks(): Book[] {
     return this.booksSubject.getValue();
   }
+
+  deleteBook(id: number): boolean {
+    const currentBooks = this.booksSubject.getValue();
+    const index = currentBooks.findIndex((book) => book.id === id);
+
+    if (index !== -1) {
+      currentBooks.splice(index, 1);
+      this.booksSubject.next([...currentBooks]);
+      return true;
+    }
+
+    return false;
+  }
 }
