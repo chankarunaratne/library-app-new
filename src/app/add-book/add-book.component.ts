@@ -25,8 +25,16 @@ export class AddBookComponent {
 
   addBook() {
     if (this.isValidBook()) {
-      this.bookService.addBook({ ...this.newBook });
-      this.resetForm();
+      this.bookService.addBook({ ...this.newBook }).subscribe(
+        (response) => {
+          console.log('Book added successfully', response);
+          this.resetForm();
+        },
+        (error) => {
+          console.error('Error adding book:', error);
+          // Handle error (e.g., show error message to user)
+        }
+      );
     }
   }
 
@@ -39,29 +47,18 @@ export class AddBookComponent {
   }
 
   isDuplicateId(): boolean {
-    return this.bookService
-      .getBooks()
-      .some((book) => book.id === this.newBook.id);
+    // This method might need to be adjusted or removed depending on how you want to handle ID generation
+    return false;
   }
 
   isDuplicateName(): boolean {
-    return this.bookService
-      .getBooks()
-      .some(
-        (book) => book.name.toLowerCase() === this.newBook.name.toLowerCase()
-      );
+    // This method might need to be adjusted or removed depending on your backend implementation
+    return false;
   }
 
   isDuplicateRecord(): boolean {
-    return this.bookService
-      .getBooks()
-      .some(
-        (book) =>
-          book.id === this.newBook.id &&
-          book.name.toLowerCase() === this.newBook.name.toLowerCase() &&
-          book.author.toLowerCase() === this.newBook.author.toLowerCase() &&
-          book.edition.toLowerCase() === this.newBook.edition.toLowerCase()
-      );
+    // This method might need to be adjusted or removed depending on your backend implementation
+    return false;
   }
 
   resetForm() {

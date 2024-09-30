@@ -19,16 +19,18 @@ export class SearchBookComponent {
   constructor(private bookService: BookService) {}
 
   searchBook() {
-    // Only perform search if searchQuery is not empty
     if (this.searchQuery.trim()) {
       this.searchPerformed = true;
-      const books = this.bookService.getBooks();
-      this.foundBook =
-        books.find((book) =>
-          book.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-        ) || null;
+      this.bookService.searchBook(this.searchQuery).subscribe(
+        (book) => {
+          this.foundBook = book;
+        },
+        (error) => {
+          console.error('Error searching for book:', error);
+          this.foundBook = null;
+        }
+      );
     } else {
-      // Reset search state if query is empty
       this.searchPerformed = false;
       this.foundBook = null;
     }

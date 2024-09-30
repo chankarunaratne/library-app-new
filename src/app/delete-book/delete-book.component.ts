@@ -19,14 +19,17 @@ export class DeleteBookComponent {
 
   deleteBook() {
     if (this.bookId !== null) {
-      const deleted = this.bookService.deleteBook(this.bookId);
-      if (deleted) {
-        this.message = 'Book deleted successfully';
-      } else {
-        this.message = "That book doesn't exist";
-      }
-      this.showMessage = true;
-      this.bookId = null;
+      this.bookService.deleteBook(this.bookId).subscribe(
+        () => {
+          this.message = 'Book deleted successfully';
+          this.showMessage = true;
+          this.bookId = null;
+        },
+        (error) => {
+          this.message = 'Error deleting book: ' + error.message;
+          this.showMessage = true;
+        }
+      );
     } else {
       this.message = 'Please enter a valid book ID';
       this.showMessage = true;
