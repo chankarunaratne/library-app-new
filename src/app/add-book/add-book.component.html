@@ -14,7 +14,6 @@
       <div *ngIf="id.invalid && (id.dirty || id.touched)" class="error">
         ID is required.
       </div>
-      <div *ngIf="isDuplicateId()" class="error">This ID already exists.</div>
     </div>
 
     <div class="form-group">
@@ -29,9 +28,6 @@
       />
       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
         Name is required.
-      </div>
-      <div *ngIf="isDuplicateName()" class="error">
-        This book name already exists.
       </div>
     </div>
 
@@ -71,16 +67,6 @@
       </div>
     </div>
 
-    <button
-      type="submit"
-      [disabled]="
-        !bookForm.form.valid ||
-        isDuplicateId() ||
-        isDuplicateName() ||
-        isDuplicateRecord()
-      "
-    >
-      Add Book
-    </button>
+    <button type="submit" [disabled]="!bookForm.form.valid">Add Book</button>
   </form>
 </div>

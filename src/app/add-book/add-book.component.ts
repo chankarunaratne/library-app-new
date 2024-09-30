@@ -24,41 +24,17 @@ export class AddBookComponent {
   constructor(private bookService: BookService) {}
 
   addBook() {
-    if (this.isValidBook()) {
-      this.bookService.addBook({ ...this.newBook }).subscribe(
-        (response) => {
-          console.log('Book added successfully', response);
-          this.resetForm();
-        },
-        (error) => {
-          console.error('Error adding book:', error);
-          // Handle error (e.g., show error message to user)
-        }
-      );
-    }
-  }
-
-  isValidBook(): boolean {
-    return (
-      !this.isDuplicateId() &&
-      !this.isDuplicateName() &&
-      !this.isDuplicateRecord()
+    console.log('Attempting to add book:', this.newBook);
+    this.bookService.addBook({ ...this.newBook }).subscribe(
+      (response) => {
+        console.log('Book added successfully', response);
+        this.resetForm();
+      },
+      (error) => {
+        console.error('Error adding book:', error);
+        // Handle error (e.g., show error message to user)
+      }
     );
-  }
-
-  isDuplicateId(): boolean {
-    // This method might need to be adjusted or removed depending on how you want to handle ID generation
-    return false;
-  }
-
-  isDuplicateName(): boolean {
-    // This method might need to be adjusted or removed depending on your backend implementation
-    return false;
-  }
-
-  isDuplicateRecord(): boolean {
-    // This method might need to be adjusted or removed depending on your backend implementation
-    return false;
   }
 
   resetForm() {
