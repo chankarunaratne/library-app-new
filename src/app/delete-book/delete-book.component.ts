@@ -20,13 +20,13 @@ export class DeleteBookComponent {
   deleteBook() {
     if (this.bookId !== null) {
       this.bookService.deleteBook(this.bookId).subscribe(
-        () => {
+        (response) => {
           this.message = 'Book deleted successfully';
           this.showMessage = true;
           this.bookId = null;
         },
         (error) => {
-          this.message = 'Error deleting book: ' + error.message;
+          this.message = 'Error deleting book: ' + error;
           this.showMessage = true;
         }
       );

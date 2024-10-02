@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Book } from '../book-list/book-list.component';
+import { Book } from '../book-list/book-list.component'; // Import the Book interface
 import { BookService } from '../services/book.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class AddBookComponent {
   @ViewChild('bookForm') bookForm!: NgForm;
 
   newBook: Book = {
-    id: 0,
+    id: 0, // Initialize with a default value
     name: '',
     author: '',
     edition: '',
@@ -25,14 +25,14 @@ export class AddBookComponent {
 
   addBook() {
     console.log('Attempting to add book:', this.newBook);
-    this.bookService.addBook({ ...this.newBook }).subscribe(
+    this.bookService.addBook(this.newBook).subscribe(
       (response) => {
-        console.log('Book added successfully', response);
-        this.resetForm();
+        console.log('Book added successfully:', response);
+        this.resetForm(); // Reset the form after successful addition
       },
       (error) => {
         console.error('Error adding book:', error);
-        // Handle error (e.g., show error message to user)
+        // Handle error (e.g., show an error message to the user)
       }
     );
   }

@@ -1,21 +1,21 @@
-<div class="search-container">
-  <h2>Search for a Book</h2>
-  <div class="search-input">
-    <input
-      type="text"
-      [(ngModel)]="searchQuery"
-      placeholder="Enter book name"
-    />
-    <button (click)="searchBook()">Search</button>
-  </div>
+<h2>Search for a Book</h2>
+<!-- Added search label -->
+<form (ngSubmit)="searchBook()">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    name="searchQuery"
+    placeholder="Enter book name..."
+    required
+  />
+  <button type="submit" [disabled]="!searchQuery">Search</button>
+</form>
 
-  <div class="search-result" *ngIf="searchPerformed">
-    <div *ngIf="foundBook">
-      <h3>Found book:</h3>
-      <p>Name: {{ foundBook.name }}</p>
-      <p>Author: {{ foundBook.author }}</p>
-      <p>Edition: {{ foundBook.edition }}</p>
-    </div>
-    <p *ngIf="!foundBook" class="error-message">We couldn't find that book</p>
-  </div>
+<div *ngIf="foundBook">
+  <h3>{{ foundBook.name }}</h3>
+  <p>Author: {{ foundBook.author }}</p>
+  <p>Edition: {{ foundBook.edition }}</p>
+</div>
+<div *ngIf="searchPerformed && !foundBook">
+  No book found with the title "{{ searchQuery }}"
 </div>
