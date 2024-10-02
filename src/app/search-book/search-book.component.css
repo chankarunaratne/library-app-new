@@ -23,3 +23,18 @@ button {
 .error-message {
   color: red;
 }
+
+.container {
+  background-color: #f9f9f9; /* Light grey background */
+  padding: 20px; /* Padding around the container */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 20px; /* Space below the container */
+}
+
+.search-results {
+  margin-top: 20px; /* Space above the search results */
+  padding: 10px; /* Padding inside the search results */
+  background-color: white; /* White background for search results */
+  border: 1px solid #ddd; /* Light grey border for search results */
+  border-radius: 5px; /* Rounded corners for search results */
+}

@@ -15,3 +15,38 @@ app-delete-book {
 app-delete-book {
   margin-bottom: 0;
 }
+
+.banner {
+  background-color: #3fa2f6; /* Facebook blue */
+  color: white; /* White text */
+  text-align: center; /* Centered text */
+  padding: 15px; /* Padding around the text */
+  font-size: 24px; /* Larger font size */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 20px; /* Space below the banner */
+}
+
+.container {
+  background-color: #f9f9f9; /* Light grey background */
+  padding: 20px; /* Padding around the container */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 20px; /* Space below the container */
+}
+
+.flex-container {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between; /* Space between items */
+  margin-bottom: 20px; /* Space below the container */
+}
+
+.flex-container > * {
+  flex: 1; /* Allow items to grow equally */
+  margin-right: 10px; /* Space between the components */
+  display: flex; /* Enable flexbox for child elements */
+  flex-direction: column; /* Stack children vertically */
+  height: 100%; /* Make both components take the full height */
+}
+
+.flex-container > *:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}

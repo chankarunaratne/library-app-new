@@ -3,6 +3,10 @@
   margin: 0;
   padding: 20px;
   padding-left: 0;
+  background-color: #f9f9f9; /* Light grey background */
+  padding: 20px; /* Padding around the container */
+  border-radius: 5px; /* Rounded corners */
+  height: 95px;
 }
 
 .delete-input {
