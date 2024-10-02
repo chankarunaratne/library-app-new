@@ -27,6 +27,7 @@ export class AddBookComponent {
     console.log('Attempting to add book:', this.newBook);
     this.bookService.addBook(this.newBook).subscribe(
       (response) => {
+        this.bookService.getBooks();
         console.log('Book added successfully:', response);
         this.resetForm(); // Reset the form after successful addition
       },

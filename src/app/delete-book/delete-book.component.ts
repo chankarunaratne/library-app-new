@@ -21,6 +21,7 @@ export class DeleteBookComponent {
     if (this.bookId !== null) {
       this.bookService.deleteBook(this.bookId).subscribe(
         (response) => {
+          this.bookService.getBooks();
           this.message = 'Book deleted successfully';
           this.showMessage = true;
           this.bookId = null;

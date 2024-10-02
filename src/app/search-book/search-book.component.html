@@ -1,6 +1,6 @@
 <h2>Search for a Book</h2>
 <!-- Added search label -->
-<form (ngSubmit)="searchBook()">
+<form>
   <input
     type="text"
     [(ngModel)]="searchQuery"
@@ -8,7 +8,7 @@
     placeholder="Enter book name..."
     required
   />
-  <button type="submit" [disabled]="!searchQuery">Search</button>
+  <button (click)="searchBook()">Search</button>
 </form>
 
 <div *ngIf="foundBook">

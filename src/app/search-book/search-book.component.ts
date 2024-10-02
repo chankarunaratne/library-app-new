@@ -19,11 +19,12 @@ export class SearchBookComponent {
   constructor(private bookService: BookService) {}
 
   searchBook() {
-    if (this.searchQuery.trim()) {
+    if (this.searchQuery) {
       this.searchPerformed = true;
       this.bookService.searchBook(this.searchQuery).subscribe(
-        (book) => {
-          this.foundBook = book;
+        (books) => {
+          this.foundBook = books; // Assign the array to foundBook
+          console.log(books); // Logs the array of books
         },
         (error) => {
           console.error('Error searching for book:', error);

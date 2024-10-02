@@ -13,6 +13,9 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
+  ngOnInit() {
+    this.getBooks();
+  }
   getBooks(): Observable<Book[]> {
     console.log('Fetching books...');
     return this.http.get<any>(`${this.apiUrl}?param=all`).pipe(
@@ -44,42 +47,18 @@ export class BookService {
   addBook(book: Book): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     console.log('Adding book:', book); // Log the book being added
-    return this.http.post(`${this.apiUrl}?param=add`, book, { headers }).pipe(
-      tap((response) => console.log('Add book response:', response)), // Log the response
-      catchError(this.handleError)
+    return this.http.get<string>(
+      `${this.apiUrl}?param=${book.id},${book.name},${book.author},${book.edition}`
     );
   }
 
   deleteBook(id: number): Observable<any> {
-    return this.http
-      .delete(`${this.apiUrl}?param=delete=${id}`)
-      .pipe(catchError(this.handleError));
+    return this.http.delete(`${this.apiUrl}?param=delete=${id}`);
   }
 
   searchBook(name: string): Observable<Book | null> {
-    return this.http.get<string>(`${this.apiUrl}?param=search=${name}`).pipe(
-      map((response) => this.parseBook(response)),
-      catchError(this.handleError)
-    );
-  }
-
-  private parseBook(response: string): Book | null {
-    try {
-      const bookData = JSON.parse(response);
-      return {
-        id: bookData.id,
-        name: bookData.name,
-        author: bookData.author,
-        edition: bookData.edition,
-      };
-    } catch (e) {
-      console.error('Error parsing book data:', e);
-      return null;
-    }
-  }
-
-  private handleError(error: any) {
-    console.error('An error occurred:', error);
-    return throwError('Something bad happened; please try again later.');
+    return this.http
+      .get<string>(`${this.apiUrl}?param=search=${name}`)
+      .pipe(map((response) => JSON.parse(response)));
   }
 }
